@@ -78,18 +78,18 @@ def makeDrink(drink):
 text=""
 power=0
 while(power==0):
-    text = input("What would you like? (espresso/latte/cappuccino):")
-    if text.lower() == 'off':
+    text = input("What would you like? (espresso/latte/cappuccino):").lower()
+    if text == 'off':
         power = 1
-    elif text.lower() == "report":
+    elif text == "report":
         report()
     else:
-        if(checkDrinkResources(text.lower())):
+        if(checkDrinkResources(text)):
             total = getCoins()
-            if(checkAmount(total, text.lower())):
-                change = dispenseChange(total, text.lower())
+            if(checkAmount(total, text)):
+                change = dispenseChange(total, text)
                 resources['money'] += (total-change)
-                makeDrink(text.lower())
+                makeDrink(text)
             else:
                 print("Sorry that's not enough money. Money refunded.")
 
