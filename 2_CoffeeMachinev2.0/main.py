@@ -21,3 +21,4 @@ while is_on:
                 if(moneybox.make_payment(drink.cost)):
                     coffe_machine.make_coffee(drink)
 
+# example change
