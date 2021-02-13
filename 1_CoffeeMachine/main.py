@@ -35,17 +35,17 @@ resources = {
 
 # Output current resources
 def report():
-    print("Water: {0}ml".format(resources['water']))
-    print("Milk: {0}ml".format(resources['milk']))
-    print("Coffee: {0}".format(resources['coffee']))
-    print("Money: £{0}".format(resources['money']))
+    print(f"Water: {resources['water']}ml")
+    print(f"Milk: {resources['milk']}ml")
+    print(f"Coffee: {resources['coffee']}g")
+    print(f"Money: £{resources['money']}")
 
 # Check drink requirements against resources
 def checkDrinkResources(drink):
     try:
         for ingredient in MENU[drink]['ingredients']:
             if MENU[drink]['ingredients'][ingredient] > resources[ingredient]:
-                print('Sorry there is not enough {}.'.format(ingredient))
+                print(f'Sorry there is not enough {ingredient}.')
                 return False
         return True
     except:
@@ -65,14 +65,14 @@ def checkAmount(coins, drink):
     return coins > MENU[drink]['cost']
 
 def dispenseChange(coins, drink):
-    change = coins - MENU[drink]['cost']
-    print("Here is £{:.2f} pounds in change.".format(change))
+    change = round(coins - MENU[drink]['cost'],2)
+    print(f"Here is £{change} pounds in change.")
     return change
 
 def makeDrink(drink):
     for ingredient in MENU[drink]['ingredients']:
         resources[ingredient] -= MENU[drink]['ingredients'][ingredient]
-    print("Here is your {}. Enjoy!".format(drink))
+    print(f"Here is your {drink}. Enjoy!")
 
 # Main loop, actions taken on condition of text
 text=""
@@ -88,8 +88,7 @@ while(power==0):
             total = getCoins()
             if(checkAmount(total, text)):
                 change = dispenseChange(total, text)
-                resources['money'] += (total-change)
+                resources['money'] += round((total-change),2)
                 makeDrink(text)
             else:
                 print("Sorry that's not enough money. Money refunded.")
-
