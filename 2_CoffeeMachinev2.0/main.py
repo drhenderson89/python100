@@ -13,6 +13,7 @@ while is_on:
         is_on = False
     elif text == 'report':
         coffe_machine.report()
+        moneybox.report()
     else:
         drink = drinks_menu.find_drink(text)
         if(drink):
